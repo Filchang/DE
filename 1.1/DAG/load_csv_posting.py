@@ -30,6 +30,8 @@ def load_ft_posting_f():
         conn = engine.raw_connection()
         cursor = conn.cursor()
 
+        cursor.execute("TRUNCATE TABLE ds.ft_posting_f")
+
         for _, row in df.iterrows():
             cursor.execute("""
                 INSERT INTO ds.ft_posting_f (
