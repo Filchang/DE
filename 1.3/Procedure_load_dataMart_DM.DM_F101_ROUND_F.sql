@@ -31,23 +31,23 @@ BEGIN
         a.char_type AS characteristic,
 
         -- Остатки на начало
-        SUM(CASE WHEN a.currency_code IN ('643', '810') THEN b_in.balance_out_rub ELSE 0 END) AS balance_in_rub,
-        SUM(CASE WHEN a.currency_code NOT IN ('643', '810') THEN b_in.balance_out_rub ELSE 0 END) AS balance_in_val,
+        SUM(CASE WHEN a.currency_code IN ('643') THEN b_in.balance_out_rub ELSE 0 END) AS balance_in_rub,
+        SUM(CASE WHEN a.currency_code NOT IN ('643') THEN b_in.balance_out_rub ELSE 0 END) AS balance_in_val,
         SUM(b_in.balance_out_rub) AS balance_in_total,
 
         -- Дебет
-        SUM(CASE WHEN a.currency_code IN ('643', '810') THEN t.debet_amount_rub ELSE 0 END) AS turn_deb_rub,
-        SUM(CASE WHEN a.currency_code NOT IN ('643', '810') THEN t.debet_amount_rub ELSE 0 END) AS turn_deb_val,
+        SUM(CASE WHEN a.currency_code IN ('643') THEN t.debet_amount_rub ELSE 0 END) AS turn_deb_rub,
+        SUM(CASE WHEN a.currency_code NOT IN ('643') THEN t.debet_amount_rub ELSE 0 END) AS turn_deb_val,
         SUM(t.debet_amount_rub) AS turn_deb_total,
 
         -- Кредит
-        SUM(CASE WHEN a.currency_code IN ('643', '810') THEN t.credit_amount_rub ELSE 0 END) AS turn_cre_rub,
-        SUM(CASE WHEN a.currency_code NOT IN ('643', '810') THEN t.credit_amount_rub ELSE 0 END) AS turn_cre_val,
+        SUM(CASE WHEN a.currency_code IN ('643') THEN t.credit_amount_rub ELSE 0 END) AS turn_cre_rub,
+        SUM(CASE WHEN a.currency_code NOT IN ('643') THEN t.credit_amount_rub ELSE 0 END) AS turn_cre_val,
         SUM(t.credit_amount_rub) AS turn_cre_total,
 
         -- Остатки на конец
-        SUM(CASE WHEN a.currency_code IN ('643', '810') THEN b_out.balance_out_rub ELSE 0 END) AS balance_out_rub,
-        SUM(CASE WHEN a.currency_code NOT IN ('643', '810') THEN b_out.balance_out_rub ELSE 0 END) AS balance_out_val,
+        SUM(CASE WHEN a.currency_code IN ('643') THEN b_out.balance_out_rub ELSE 0 END) AS balance_out_rub,
+        SUM(CASE WHEN a.currency_code NOT IN ('643') THEN b_out.balance_out_rub ELSE 0 END) AS balance_out_val,
         SUM(b_out.balance_out_rub) AS balance_out_total
 
     FROM ds.md_account_d a
